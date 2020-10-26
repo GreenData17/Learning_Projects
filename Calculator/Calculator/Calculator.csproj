@@ -53,6 +53,7 @@
     <Compile Include="Engine\Shape2d.cs" />
     <Compile Include="Engine\Text.cs" />
     <Compile Include="Engine\Vector2.cs" />
+    <Compile Include="ManageButton.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
