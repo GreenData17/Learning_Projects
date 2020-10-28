@@ -51,13 +51,13 @@ namespace Calculator
 
         public void SetCalc(char numchar)
         {
-            if(result != "0") { result = "0"; number1 = "0"; number2 = "0"; }
             if (numchar == '.')
             {
                 if(newMath == math.none)
                 {
                     if (!number1.ToString().Contains("."))
                     {
+                        if (result != "0") { result = "0"; number1 = "0"; number2 = "0"; }
                         number1 = number1 + numchar;
                     }
                 }
@@ -65,21 +65,29 @@ namespace Calculator
                 {
                     if (!number2.ToString().Contains("."))
                     {
+                        if (result != "0") { number1 = result; result = "0"; number2 = "0"; }
                         number2 = number2 + numchar;
                     }
                 }
             }
             else
             {
-                if (number1 == "0") number1 = "";
-                if (newMath != math.none && number2 == "0") number2 = "";
+                
 
                 if (newMath == math.none)
                 {
+                    if (result != "0") { result = "0"; number1 = "0"; number2 = "0"; }
+                    if (number1 == "0") number1 = "";
+                    if (newMath != math.none && number2 == "0") number2 = "";
+
                     number1 = number1 + numchar;
                 }
                 else
                 {
+                    if (result != "0") { number1 = result; result = "0"; number2 = "0"; }
+                    if (number1 == "0") number1 = "";
+                    if (newMath != math.none && number2 == "0") number2 = "";
+
                     number2 = number2 + numchar;
                 }
             }
