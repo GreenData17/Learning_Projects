@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -41,13 +42,9 @@ namespace Calculator.Engine
             };
 
             CALCULATOR.Paint += Renderer;
-            
-            CALCULATOR.KeyDown += OnKeyDown;
-            CALCULATOR.KeyUp += OnKeyUp;
 
             CALCULATOR.MouseMove += OnMouseMove;
-            CALCULATOR.MouseDown += OnMouseDown;
-            CALCULATOR.MouseUp += OnMouseUp;
+            CALCULATOR.MouseClick += OnMouseClick;
 
             Debug.LogInfo("Programm Opened!");
 
@@ -59,6 +56,7 @@ namespace Calculator.Engine
 
         public void Update()
         {
+            //Thread.Sleep(100);
             OnUpdate();
             CALCULATOR.Refresh();
         }
@@ -87,12 +85,8 @@ namespace Calculator.Engine
         public abstract void OnLoad();
         public abstract void OnUpdate();
 
-        public abstract void OnKeyDown(object sender, KeyEventArgs e);
-        public abstract void OnKeyUp(object sender, KeyEventArgs e);
-
         public abstract void OnMouseMove(object sender, MouseEventArgs e);
-        public abstract void OnMouseDown(object sender, MouseEventArgs e);
-        public abstract void OnMouseUp(object sender, MouseEventArgs e);
+        public abstract void OnMouseClick(object sender, MouseEventArgs e);
 
         //#### Extern Code ####
 

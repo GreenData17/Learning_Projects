@@ -13,6 +13,8 @@ namespace Calculator
     {
         public APP() : base(new Vector2(240, 320), "Calculator") { }
 
+        public ManageButton MB;
+
         Shape2d InputField, btn_plus, btn_minus, btn_div, btn_mul, btn_7, btn_8,
             btn_9, btn_4, btn_5, btn_6, btn_1, btn_2, btn_3, btn_0, btn_dot, btn_equal;
 
@@ -21,6 +23,8 @@ namespace Calculator
 
         public override void OnLoad()
         {
+            MB = new ManageButton();
+
             #region Create Buttons
             InputField = new Shape2d(new Vector2(5, 5), new Vector2(215, 50), Color.White, "InputF");
 
@@ -72,97 +76,127 @@ namespace Calculator
 
         public override void OnUpdate()
         {
-            
-        }
-
-        public override void OnKeyDown(object sender, KeyEventArgs e)
-        {
-            
-        }
-
-        public override void OnKeyUp(object sender, KeyEventArgs e)
-        {
-            
+            if (txt_InputField != null && MB.CalcUpdated)
+            {
+                if (MB.result == "0")
+                {
+                    if (MB.number2 == "0")
+                    {
+                        if (MB.newMath == ManageButton.math.none)
+                        {
+                            txt_InputField.text = MB.GetNumber1();
+                        }
+                        else
+                        {
+                            if (MB.newMath == ManageButton.math.add) { txt_InputField.text = MB.GetNumber1() + " + "; }
+                            if (MB.newMath == ManageButton.math.sub) { txt_InputField.text = MB.GetNumber1() + " - "; }
+                            if (MB.newMath == ManageButton.math.div) { txt_InputField.text = MB.GetNumber1() + " / "; }
+                            if (MB.newMath == ManageButton.math.mul) { txt_InputField.text = MB.GetNumber1() + " * "; }
+                        }
+                    }
+                    else
+                    {
+                        if (MB.newMath == ManageButton.math.add) { txt_InputField.text = MB.GetNumber1() + " + " + MB.GetNumber2(); }
+                        if (MB.newMath == ManageButton.math.sub) { txt_InputField.text = MB.GetNumber1() + " - " + MB.GetNumber2(); ; }
+                        if (MB.newMath == ManageButton.math.div) { txt_InputField.text = MB.GetNumber1() + " / " + MB.GetNumber2(); ; }
+                        if (MB.newMath == ManageButton.math.mul) { txt_InputField.text = MB.GetNumber1() + " * " + MB.GetNumber2(); ; }
+                    }
+                }
+                else
+                {
+                    txt_InputField.text = MB.GetResult();
+                }
+            }
         }
 
         public override void OnMouseMove(object sender, MouseEventArgs e)
         {
-            if (MouseHoverCheck(e, InputField.Position, InputField.Size)) { InputField.color = Color.LightGray; }
-            else { InputField.color = Color.White; }
+            if (MouseHoverCheck(e, InputField.Position, InputField.Size)) { InputField.color = Color.LightGray; InputField.Hovering = true; }
+            else { InputField.color = Color.White; InputField.Hovering = false; }
 
             #region operator btn hover
 
-            if (MouseHoverCheck(e, btn_plus.Position, btn_plus.Size)) { btn_plus.color = Color.LightCoral; }
-            else { btn_plus.color = Color.Gray; }
+            if (MouseHoverCheck(e, btn_plus.Position, btn_plus.Size)) { btn_plus.color = Color.LightCoral; btn_plus.Hovering = true; }
+            else { btn_plus.color = Color.Gray; btn_plus.Hovering = false; }
             
-            if(MouseHoverCheck(e, btn_minus.Position, btn_minus.Size)) { btn_minus.color = Color.LightCoral; }
-            else { btn_minus.color = Color.Gray; }
+            if(MouseHoverCheck(e, btn_minus.Position, btn_minus.Size)) { btn_minus.color = Color.LightCoral; btn_minus.Hovering = true; }
+            else { btn_minus.color = Color.Gray; btn_minus.Hovering = false; }
 
-            if (MouseHoverCheck(e, btn_div.Position, btn_div.Size)) { btn_div.color = Color.LightCoral; }
-            else { btn_div.color = Color.Gray; }
+            if (MouseHoverCheck(e, btn_div.Position, btn_div.Size)) { btn_div.color = Color.LightCoral; btn_div.Hovering = true; }
+            else { btn_div.color = Color.Gray; btn_div.Hovering = false; }
 
-            if (MouseHoverCheck(e, btn_mul.Position, btn_mul.Size)) { btn_mul.color = Color.LightCoral; }
-            else { btn_mul.color = Color.Gray; }
+            if (MouseHoverCheck(e, btn_mul.Position, btn_mul.Size)) { btn_mul.color = Color.LightCoral; btn_mul.Hovering = true; }
+            else { btn_mul.color = Color.Gray; btn_mul.Hovering = false; }
 
             #endregion
 
             #region nummber btn hover
 
-            if (MouseHoverCheck(e, btn_7.Position, btn_7.Size)) { btn_7.color = Color.LightBlue; }
-            else { btn_7.color = Color.Gray; }
+            if (MouseHoverCheck(e, btn_7.Position, btn_7.Size)) { btn_7.color = Color.LightBlue; btn_7.Hovering = true; }
+            else { btn_7.color = Color.Gray; btn_7.Hovering = false; }
 
-            if (MouseHoverCheck(e, btn_8.Position, btn_8.Size)) { btn_8.color = Color.LightBlue; }
-            else { btn_8.color = Color.Gray; }
+            if (MouseHoverCheck(e, btn_8.Position, btn_8.Size)) { btn_8.color = Color.LightBlue; btn_8.Hovering = true; }
+            else { btn_8.color = Color.Gray; btn_8.Hovering = false; }
 
-            if (MouseHoverCheck(e, btn_9.Position, btn_9.Size)) { btn_9.color = Color.LightBlue; }
-            else { btn_9.color = Color.Gray; }
-
-
-            if (MouseHoverCheck(e, btn_4.Position, btn_4.Size)) { btn_4.color = Color.LightBlue; }
-            else { btn_4.color = Color.Gray; }
-
-            if (MouseHoverCheck(e, btn_5.Position, btn_5.Size)) { btn_5.color = Color.LightBlue; }
-            else { btn_5.color = Color.Gray; }
-
-            if (MouseHoverCheck(e, btn_6.Position, btn_6.Size)) { btn_6.color = Color.LightBlue; }
-            else { btn_6.color = Color.Gray; }
+            if (MouseHoverCheck(e, btn_9.Position, btn_9.Size)) { btn_9.color = Color.LightBlue; btn_9.Hovering = true; }
+            else { btn_9.color = Color.Gray; btn_9.Hovering = false; }
 
 
-            if (MouseHoverCheck(e, btn_1.Position, btn_1.Size)) { btn_1.color = Color.LightBlue; }
-            else { btn_1.color = Color.Gray; }
+            if (MouseHoverCheck(e, btn_4.Position, btn_4.Size)) { btn_4.color = Color.LightBlue; btn_4.Hovering = true; }
+            else { btn_4.color = Color.Gray; btn_4.Hovering = false; }
 
-            if (MouseHoverCheck(e, btn_2.Position, btn_2.Size)) { btn_2.color = Color.LightBlue; }
-            else { btn_2.color = Color.Gray; }
+            if (MouseHoverCheck(e, btn_5.Position, btn_5.Size)) { btn_5.color = Color.LightBlue; btn_5.Hovering = true; }
+            else { btn_5.color = Color.Gray; btn_5.Hovering = false; }
 
-            if (MouseHoverCheck(e, btn_3.Position, btn_3.Size)) { btn_3.color = Color.LightBlue; }
-            else { btn_3.color = Color.Gray; }
+            if (MouseHoverCheck(e, btn_6.Position, btn_6.Size)) { btn_6.color = Color.LightBlue; btn_6.Hovering = true; }
+            else { btn_6.color = Color.Gray; btn_6.Hovering = false; }
+
+
+            if (MouseHoverCheck(e, btn_1.Position, btn_1.Size)) { btn_1.color = Color.LightBlue; btn_1.Hovering = true; }
+            else { btn_1.color = Color.Gray; btn_1.Hovering = false; }
+
+            if (MouseHoverCheck(e, btn_2.Position, btn_2.Size)) { btn_2.color = Color.LightBlue; btn_2.Hovering = true; }
+            else { btn_2.color = Color.Gray; btn_2.Hovering = false; }
+
+            if (MouseHoverCheck(e, btn_3.Position, btn_3.Size)) { btn_3.color = Color.LightBlue; btn_3.Hovering = true; }
+            else { btn_3.color = Color.Gray; btn_3.Hovering = false; }
 
             #endregion
 
             #region 0 dot equal btn hover
 
-            if (MouseHoverCheck(e, btn_0.Position, btn_0.Size)) { btn_0.color = Color.LightPink; }
-            else { btn_0.color = Color.Gray; }
+            if (MouseHoverCheck(e, btn_0.Position, btn_0.Size)) { btn_0.color = Color.LightPink; btn_0.Hovering = true; }
+            else { btn_0.color = Color.Gray; btn_0.Hovering = false; }
 
-            if (MouseHoverCheck(e, btn_dot.Position, btn_dot.Size)) { btn_dot.color = Color.LightYellow; }
-            else { btn_dot.color = Color.Gray; }
+            if (MouseHoverCheck(e, btn_dot.Position, btn_dot.Size)) { btn_dot.color = Color.LightYellow; btn_dot.Hovering = true; }
+            else { btn_dot.color = Color.Gray; btn_dot.Hovering = false; }
 
-            if (MouseHoverCheck(e, btn_equal.Position, btn_equal.Size)) { btn_equal.color = Color.LightGreen; }
-            else { btn_equal.color = Color.Gray; }
+            if (MouseHoverCheck(e, btn_equal.Position, btn_equal.Size)) { btn_equal.color = Color.LightGreen; btn_equal.Hovering = true; }
+            else { btn_equal.color = Color.Gray; btn_equal.Hovering = false; }
 
             #endregion
-
+            
 
         }
 
-        public override void OnMouseDown(object sender, MouseEventArgs e)
+        public override void OnMouseClick(object sender, MouseEventArgs e)
         {
-            
-        }
-
-        public override void OnMouseUp(object sender, MouseEventArgs e)
-        {
-            
+            if (btn_plus.Hovering) { MB.SetMath('+'); }
+            if (btn_minus.Hovering) { MB.SetMath('-'); }
+            if (btn_div.Hovering) { MB.SetMath('/'); }
+            if (btn_mul.Hovering) { MB.SetMath('*'); }
+            if (btn_7.Hovering) { MB.SetCalc('7'); }
+            if (btn_8.Hovering) { MB.SetCalc('8'); }
+            if (btn_9.Hovering) { MB.SetCalc('9'); }
+            if (btn_4.Hovering) { MB.SetCalc('4'); }
+            if (btn_5.Hovering) { MB.SetCalc('5'); }
+            if (btn_6.Hovering) { MB.SetCalc('6'); }
+            if (btn_1.Hovering) { MB.SetCalc('1'); }
+            if (btn_2.Hovering) { MB.SetCalc('2'); }
+            if (btn_3.Hovering) { MB.SetCalc('3'); }
+            if (btn_0.Hovering) { MB.SetCalc('0'); }
+            if (btn_dot.Hovering) { MB.SetCalc('.'); }
+            if (btn_equal.Hovering) { MB.Calculate(); }
         }
 
         private bool MouseHoverCheck(MouseEventArgs e, Vector2 Position, Vector2 Size)

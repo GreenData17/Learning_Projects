@@ -12,6 +12,8 @@ namespace Calculator.Engine
         public Color color { get { return _color; } set { _color = value; Calc.Instance.Update(); } }
         private Color _color;
 
+        public bool Hovering;
+
         public readonly string Tag;
 
         public Shape2d(Vector2 Position, Vector2 Size, Color color, string Tag)

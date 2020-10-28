@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Calculator.Engine;
+using System;
 
 namespace Calculator
 {
     public class ManageButton
     {
-        public Double nummber1 = 0;
-        public Double nummber2 = 0;
-        public Double result = 0;
+        public bool CalcUpdated;
+
+        public string number1 = "0";
+        public string number2 = "0";
+        public string result = "0";
 
         public enum math{
             none,
@@ -20,9 +23,9 @@ namespace Calculator
 
         public ManageButton()
         {
-            nummber1 = 0;
-            nummber2 = 0;
-            result = 0;
+            number1 = "0";
+            number2 = "0";
+            result = "0";
             newMath = math.none;
         }
 
@@ -43,42 +46,46 @@ namespace Calculator
                     newMath = math.div;
                     break;
             }
+            CalcUpdated = true;
         }
 
         public void SetCalc(char numchar)
         {
-            result = 0;
+            if(result != "0") { result = "0"; number1 = "0"; number2 = "0"; }
             if (numchar == '.')
             {
                 if(newMath == math.none)
                 {
-                    if (!nummber1.ToString().Contains("."))
+                    if (!number1.ToString().Contains("."))
                     {
-                        nummber1 = float.Parse(nummber1.ToString() + numchar);
+                        number1 = number1 + numchar;
                     }
                 }
                 else
                 {
-                    if (!nummber2.ToString().Contains("."))
+                    if (!number2.ToString().Contains("."))
                     {
-                        nummber2 = float.Parse(nummber2.ToString() + numchar);
+                        number2 = number2 + numchar;
                     }
                 }
             }
             else
             {
+                if (number1 == "0") number1 = "";
+                if (newMath != math.none && number2 == "0") number2 = "";
+
                 if (newMath == math.none)
                 {
-                    nummber1 = float.Parse(nummber1.ToString() + numchar);
+                    number1 = number1 + numchar;
                 }
                 else
                 {
-                    if (!nummber2.ToString().Contains("."))
-                    {
-                        nummber2 = float.Parse(nummber2.ToString() + numchar);
-                    }
+                    number2 = number2 + numchar;
                 }
             }
+            CalcUpdated = true;
+
+            Debug.LogInfo($"current Calculation: {number1} || {number2} = {result}");
         }
 
         public void Calculate()
@@ -87,27 +94,38 @@ namespace Calculator
             {
                 case math.add:
 
-                    result = nummber1 + nummber2;
+                    Double i = Double.Parse(number1) + Double.Parse(number2);
+                    result = i.ToString();
 
                     break;
                 case math.sub:
 
-                    result = nummber1 - nummber2;
+                    Double j = Double.Parse(number1) - Double.Parse(number2);
+                    result = j.ToString();
 
                     break;
                 case math.mul:
 
-                    result = nummber1 * nummber2;
+                    Double k = Double.Parse(number1) * Double.Parse(number2);
+                    result = k.ToString();
 
                     break;
                 case math.div:
 
-                    result = nummber1 / nummber2;
+                    Double o = Double.Parse(number1) / Double.Parse(number2);
+                    result = o.ToString();
 
                     break;
             }
 
+            Debug.LogInfo($"current Calculation: {number1} || {number2} = {result}");
+
             newMath = math.none;
+            CalcUpdated = true;
         }
+
+        public string GetNumber1() { if (CalcUpdated) { CalcUpdated = false; return number1.ToString();  } else { return "-E-"; } }
+        public string GetNumber2() { if (CalcUpdated) { CalcUpdated = false; return number2.ToString();  } else { return "-E-"; } }
+        public string GetResult() { if (CalcUpdated) { CalcUpdated = false; return result.ToString();  } else { return "-E-"; } }
     }
 }
