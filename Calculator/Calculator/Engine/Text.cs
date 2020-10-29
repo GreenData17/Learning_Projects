@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculator.Engine
 {
-    public class Text
+    public class Text //Contains the information to create a text object
     {
         public Vector2 Position { get { return _Position; } set { _Position = value; Calc.Instance.Update(); } }
         private Vector2 _Position;

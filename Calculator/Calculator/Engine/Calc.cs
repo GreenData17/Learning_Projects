@@ -9,15 +9,15 @@ using System.Windows.Forms;
 
 namespace Calculator.Engine
 {
-    public class Windows : Form
+    public class Windows : Form  //alters/overrides the Windows Forms
     {
         public Windows()
         {
-            DoubleBuffered = true;
+            DoubleBuffered = true;  //is used to reduce flickering when redrawing the window
         }
     }
 
-    public abstract class Calc
+    public abstract class Calc  //Preparing the window and setting events
     {
         public static Calc Instance = null;
         public Vector2 WIN_SIZE = new Vector2(200, 600);
@@ -66,11 +66,11 @@ namespace Calculator.Engine
             Graphics g = e.Graphics;
             g.Clear(Color.DarkGray);
 
-            foreach(Shape2d s in AllShape2ds)
+            foreach(Shape2d s in AllShape2ds) //Creates a Shape
             {
                 g.FillRectangle(new SolidBrush(s.color), s.Position.X, s.Position.Y, s.Size.X, s.Size.Y);
             }
-            foreach(Text t in AllTexts)
+            foreach(Text t in AllTexts)  //Create white text wit black outline (only works semi good)
             {
                 g.DrawString(t.text, new Font(FontFamily.GenericMonospace, t.fontsize), new SolidBrush(Color.Black), t.Position.X - 2, t.Position.Y - 2);
                 g.DrawString(t.text, new Font(FontFamily.GenericMonospace, t.fontsize), new SolidBrush(Color.Black), t.Position.X + 2, t.Position.Y + 2);
@@ -80,7 +80,7 @@ namespace Calculator.Engine
             }
         }
 
-        //#### Extern Code ####
+        //#### Extern Code #### // Is used to set function from the caller class
 
         public abstract void OnLoad();
         public abstract void OnUpdate();
@@ -91,7 +91,7 @@ namespace Calculator.Engine
         //#### Extern Code ####
 
 
-        //#### Register Funktion ####
+        //#### Register Funktion ####  //  Is used to decide to display a graphical object or not.
 
         public void RegisterShape2d(Shape2d s) { AllShape2ds.Add(s); }
         public void UnRegisterShape2d(Shape2d s) { AllShape2ds.Remove(s); }

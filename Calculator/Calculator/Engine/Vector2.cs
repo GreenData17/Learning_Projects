@@ -2,7 +2,7 @@
 
 namespace Calculator.Engine
 {
-    public class Vector2
+    public class Vector2  //for easier use of x and y like position(Point(int X, int Y)) or size
     {
         public int X;
         public int Y;

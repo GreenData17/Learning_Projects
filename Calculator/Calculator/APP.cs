@@ -21,7 +21,7 @@ namespace Calculator
         Text txt_InputField, txt_plus, txt_minus, txt_div, txt_mul, txt_7, txt_8,
             txt_9, txt_4, txt_5, txt_6, txt_1, txt_2, txt_3, txt_0, txt_dot, txt_equal;
 
-        public override void OnLoad()
+        public override void OnLoad() //Creating all graphics objects
         {
             MB = new ManageButton();
 
@@ -74,7 +74,7 @@ namespace Calculator
             #endregion
         }
 
-        public override void OnUpdate()
+        public override void OnUpdate()  //Updates the display
         {
             if (txt_InputField != null && MB.CalcUpdated)
             {
@@ -109,7 +109,7 @@ namespace Calculator
             }
         }
 
-        public override void OnMouseMove(object sender, MouseEventArgs e)
+        public override void OnMouseMove(object sender, MouseEventArgs e) //changes the button color onhover
         {
             if (MouseHoverCheck(e, InputField.Position, InputField.Size)) { InputField.color = Color.LightGray; InputField.Hovering = true; }
             else { InputField.color = Color.White; InputField.Hovering = false; }
@@ -179,7 +179,7 @@ namespace Calculator
 
         }
 
-        public override void OnMouseClick(object sender, MouseEventArgs e)
+        public override void OnMouseClick(object sender, MouseEventArgs e) //executes a calculation function
         {
             if (btn_plus.Hovering) { MB.SetMath('+'); }
             if (btn_minus.Hovering) { MB.SetMath('-'); }
@@ -199,7 +199,7 @@ namespace Calculator
             if (btn_equal.Hovering) { MB.Calculate(); }
         }
 
-        private bool MouseHoverCheck(MouseEventArgs e, Vector2 Position, Vector2 Size)
+        private bool MouseHoverCheck(MouseEventArgs e, Vector2 Position, Vector2 Size) //Checks if mouse is hovering something
         {
             if (e.X < Position.X + Size.X && e.X > Position.X)
             {

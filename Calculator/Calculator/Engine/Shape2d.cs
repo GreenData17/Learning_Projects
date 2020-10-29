@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Calculator.Engine
 {
-    public class Shape2d
+    public class Shape2d  //contains the informations to create a shape
     {
         public Vector2 Position { get { return _Position; } set { _Position = value; Calc.Instance.Update(); } }
         private Vector2 _Position;

@@ -8,7 +8,7 @@ namespace Calculator
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args) //Starts the Programm
         {
             APP app = new APP();
         }
