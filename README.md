@@ -5,4 +5,4 @@ various programming projects - for me to learn.
 
 > GameEngine2D - A Code based GameEngine made from scratch. (even the graphics + console feddback)
 
-> CosmosOS - A Operating System based on Cosmos (a operating system development kit)
+> CubyOS - A Operating System based on Cosmos (a operating system development kit)
