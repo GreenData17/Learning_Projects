@@ -24,6 +24,7 @@ namespace CubyOS
 
             fs = new Sys.FileSystem.CosmosVFS();
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
+            fs.Initialize();
             
             Console.Clear();
         }

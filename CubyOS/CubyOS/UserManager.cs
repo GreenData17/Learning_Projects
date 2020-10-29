@@ -26,21 +26,29 @@ namespace CubyOS
                 Console.WriteLine();
                 Console.Write("Username: ");
                 string u = Console.ReadLine();
-                if(u == "F12_55") { Directory.Delete(@"0:\System", true); Sys.Power.Reboot(); }
+                if(u == "F12_55") { Directory.Delete(@"0:\System", true); Login(); return; }
                 Console.Clear();
                 Console.WriteLine("# LOGIN #");
                 Console.WriteLine();
                 Console.Write("Password: ");
                 string p = Console.ReadLine();
 
-                string[] us = File.ReadAllLines(@"0:\System\users.sys");  //Problem on reading is here!
-                if (us[0] != $"{u} {p}")
-                { 
-                    Sys.Power.Reboot();
+                if (File.Exists(@"0:\System\users.sys"))
+                {
+                    string[] us = File.ReadAllLines(@"0:\System\users.sys");
+                    if (us[0] != $"{u} {p}")
+                    {
+                        Sys.Power.Reboot();
+                    }
+                    else
+                    {
+                        Console.WriteLine(File.ReadAllText(@"0:\System\welcome.txt"));
+                    }
                 }
                 else
                 {
-                    Console.WriteLine(File.ReadAllText(@"0:\System\welcome.txt"));
+                    Console.WriteLine("[ERROR] File not found!");
+                    Console.ReadLine();
                 }
             }    
         }
@@ -70,7 +78,9 @@ namespace CubyOS
             }
 
             Directory.CreateDirectory(@"0:\System");
-            File.WriteAllText(@"0:\System\users.sys", $"{u} {p}");
+            string[] ss = new string[1];
+            ss[0] = $"{u} {p}";
+            File.WriteAllLines(@"0:\System\users.sys", ss);
             File.WriteAllText(@"0:\System\welcome.txt", "Welcome to CubyOS!");
             Directory.CreateDirectory($@"0:\{u}\dokument");
             Console.Write("Press any Key to Reboot...");
