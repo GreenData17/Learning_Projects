@@ -93,6 +93,8 @@ namespace Calculator
             }
             CalcUpdated = true;
 
+            if (number1 == "") { number1 = "0"; }
+
             Debug.LogInfo($"current Calculation: {number1} || {number2} = {result}");
         }
 
@@ -119,6 +121,9 @@ namespace Calculator
 
                     break;
                 case math.div:
+
+                    if (double.Parse(number1) == 0 && double.Parse(number2) == 0)
+                    { Debug.LogError("Can't Prozess this. (O_O;)"); break; }
 
                     Double o = Double.Parse(number1) / Double.Parse(number2);
                     result = o.ToString();

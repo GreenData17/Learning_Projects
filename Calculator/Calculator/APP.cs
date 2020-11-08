@@ -199,6 +199,28 @@ namespace Calculator
             if (btn_equal.Hovering) { MB.Calculate(); }
         }
 
+        public override void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Add) { MB.SetMath('+'); }
+            if (e.KeyCode == Keys.Subtract) { MB.SetMath('-'); }
+            if (e.KeyCode == Keys.Divide) { MB.SetMath('/'); }
+            if (e.KeyCode == Keys.Multiply) { MB.SetMath('*'); }
+            if (e.KeyCode == Keys.D7 || e.KeyCode == Keys.NumPad7) { MB.SetCalc('7'); }
+            if (e.KeyCode == Keys.D8 || e.KeyCode == Keys.NumPad8) { MB.SetCalc('8'); }
+            if (e.KeyCode == Keys.D9 || e.KeyCode == Keys.NumPad9) { MB.SetCalc('9'); }
+            if (e.KeyCode == Keys.D4 || e.KeyCode == Keys.NumPad4) { MB.SetCalc('4'); }
+            if (e.KeyCode == Keys.D5 || e.KeyCode == Keys.NumPad5) { MB.SetCalc('5'); }
+            if (e.KeyCode == Keys.D6 || e.KeyCode == Keys.NumPad6) { MB.SetCalc('6'); }
+            if (e.KeyCode == Keys.D1 || e.KeyCode == Keys.NumPad1) { MB.SetCalc('1'); }
+            if (e.KeyCode == Keys.D2 || e.KeyCode == Keys.NumPad2) { MB.SetCalc('2'); }
+            if (e.KeyCode == Keys.D3 || e.KeyCode == Keys.NumPad3) { MB.SetCalc('3'); }
+            if (e.KeyCode == Keys.D0 || e.KeyCode == Keys.NumPad0) { MB.SetCalc('0'); }
+            if (e.KeyCode == Keys.OemPeriod || e.KeyCode == Keys.Decimal) { MB.SetCalc('.'); }
+            if (e.KeyCode == Keys.Return) { MB.Calculate(); }
+
+            Update();
+        }
+
         private bool MouseHoverCheck(MouseEventArgs e, Vector2 Position, Vector2 Size) //Checks if mouse is hovering something
         {
             if (e.X < Position.X + Size.X && e.X > Position.X)

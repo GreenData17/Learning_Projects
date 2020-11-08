@@ -45,6 +45,7 @@ namespace Calculator.Engine
 
             CALCULATOR.MouseMove += OnMouseMove;
             CALCULATOR.MouseClick += OnMouseClick;
+            CALCULATOR.KeyDown += OnKeyDown;
 
             Debug.LogInfo("Programm Opened!");
 
@@ -87,6 +88,7 @@ namespace Calculator.Engine
 
         public abstract void OnMouseMove(object sender, MouseEventArgs e);
         public abstract void OnMouseClick(object sender, MouseEventArgs e);
+        public abstract void OnKeyDown(object sender, KeyEventArgs e);
 
         //#### Extern Code ####
 
