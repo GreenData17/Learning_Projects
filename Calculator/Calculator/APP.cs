@@ -181,6 +181,7 @@ namespace Calculator
 
         public override void OnMouseClick(object sender, MouseEventArgs e) //executes a calculation function
         {
+            if (InputField.Hovering) { Clipboard.SetText(MB.result); Debug.LogInfo("Copyed Result!"); }
             if (btn_plus.Hovering) { MB.SetMath('+'); }
             if (btn_minus.Hovering) { MB.SetMath('-'); }
             if (btn_div.Hovering) { MB.SetMath('/'); }
