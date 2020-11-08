@@ -48,6 +48,7 @@
     <Compile Include="Engine\Cuby.cs" />
     <Compile Include="Engine\Debug.cs" />
     <Compile Include="Engine\Shape2d.cs" />
+    <Compile Include="Engine\Sprite2d.cs" />
     <Compile Include="Engine\Vector2.cs" />
     <Compile Include="Engine\Window.cs">
       <SubType>Form</SubType>

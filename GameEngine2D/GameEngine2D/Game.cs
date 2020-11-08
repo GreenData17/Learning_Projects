@@ -29,9 +29,9 @@ namespace GameEngine
             Player = new Shape2d(new Vector2(50, 50), new Vector2(683, 384), Color.DarkGray, "Player");
         }
 
-        public override void OnUpdate()
+        public override void OnUpdate()  //Everytime something graphicaly gets changed this will be called
         {
-            int speed = 2;
+            int speed = 5;
 
             if(Up) { Player.Position.Y -= speed; }
             if(Down) { Player.Position.Y += speed; }
@@ -39,7 +39,7 @@ namespace GameEngine
             if(Right) { Player.Position.X += speed; }
         }
 
-        public override void OnKeyDown(object sender, KeyEventArgs e)
+        public override void OnKeyDown(object sender, KeyEventArgs e)  //Everytime e key is pressed down this will be called
         {
             if(e.KeyCode == Keys.W) { Up = true; }
             if(e.KeyCode == Keys.S) { Down = true; }
@@ -47,10 +47,10 @@ namespace GameEngine
             if(e.KeyCode == Keys.D) { Right = true; }
 
 
-            Update();
+            Update(); //Force Update
         }
 
-        public override void OnKeyUp(object sender, KeyEventArgs e)
+        public override void OnKeyUp(object sender, KeyEventArgs e)  //Everytime e key is released this will be called
         {
             if (e.KeyCode == Keys.W) { Up = false; }
             if (e.KeyCode == Keys.S) { Down = false; }
@@ -58,7 +58,7 @@ namespace GameEngine
             if (e.KeyCode == Keys.D) { Right = false; }
 
 
-            Update();
+            Update(); //Force Update
         }
     }
 }
