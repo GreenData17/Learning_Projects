@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubyOS", "CubyOS\CubyOS.csproj", "{D08D314D-ECCF-461E-AAD1-1E283D0641C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubyOS", "CubyOS\CubyOS.csproj", "{CEE92DF2-6A35-4B0E-9F60-2D6926B4AE60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D08D314D-ECCF-461E-AAD1-1E283D0641C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D08D314D-ECCF-461E-AAD1-1E283D0641C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D08D314D-ECCF-461E-AAD1-1E283D0641C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D08D314D-ECCF-461E-AAD1-1E283D0641C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEE92DF2-6A35-4B0E-9F60-2D6926B4AE60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEE92DF2-6A35-4B0E-9F60-2D6926B4AE60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEE92DF2-6A35-4B0E-9F60-2D6926B4AE60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEE92DF2-6A35-4B0E-9F60-2D6926B4AE60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {52623E60-F812-44F6-A6D9-93D1F2A900B5}
+		SolutionGuid = {A6C779BC-CA8B-42FC-BB55-4ED6D07CBAEB}
 	EndGlobalSection
 EndGlobal

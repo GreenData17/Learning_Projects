@@ -5,7 +5,6 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sys = Cosmos.System;
-
 using CubyOS.User;
 
 namespace CubyOS.System
@@ -47,6 +46,27 @@ namespace CubyOS.System
             string input = Console.ReadLine();
             Console.WriteLine();
             CC.StartCommand(input);
+        }
+
+        // Logo
+        public static void DrawLogo()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.Write(@"|-----------------------------------------------|                               ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(@"|   ____  _    _ ____ _     _           +----+  |                               ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write(@"|  / __ \| |  | |  _ \ \   / /         /    /|  |                               ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write(@"| | |  |_| |  | | |_|/\ \_/ /         +----+ |  |                               ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(@"| | |   _| |  | |  _ \ \   /          |    | +  |                               ");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Write(@"| | |__| | |__| | |_||  | |           |    |/   |                               ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(@"|  \____/ \_____|____/  |_|           +----+    |                               ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write(@"|-----------------------------------------------|                               ");
         }
     }
 }

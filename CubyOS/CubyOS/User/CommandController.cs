@@ -107,19 +107,29 @@ namespace CubyOS.User
             }
             else if (input == "ls") // LS
             {
-                string[] dirs = Directory.GetDirectories(System.Kernel.Instance.CurrentDir);
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                foreach (string s in dirs)
+                try
                 {
-                    Console.WriteLine(" [D] " + s);
+                    string[] dirs = Directory.GetDirectories(System.Kernel.Instance.CurrentDir);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    foreach (string s in dirs)
+                    {
+                        Console.WriteLine(" <DIR>  " + s);
+                    }
                 }
+                catch { }
 
-                string[] files = Directory.GetFiles(System.Kernel.Instance.CurrentDir);
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                foreach(string s in files)
+                
+                try
                 {
-                    Console.WriteLine(" [F] " + s);
+                    string[] files = Directory.GetFiles(System.Kernel.Instance.CurrentDir);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    foreach (string s in files)
+                    {
+                        if (!s.EndsWith(".null"))
+                            Console.WriteLine(" <FILE> " + s);
+                    }
                 }
+                catch { }
 
                 Console.ForegroundColor = ConsoleColor.White;
             }
