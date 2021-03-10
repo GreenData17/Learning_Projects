@@ -125,7 +125,7 @@ namespace CubyOS.User
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     foreach (string s in files)
                     {
-                        if (!s.EndsWith(".null"))
+                        //if (!s.EndsWith(".null"))
                             Console.WriteLine(" <FILE> " + s);
                     }
                 }

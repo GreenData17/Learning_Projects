@@ -13,6 +13,8 @@ namespace CubyOS.User
 
         public void Login()
         {
+
+            Sys.FileSystem.CosmosVFS fs = System.Kernel.Instance.fs;
             ConsoleKeyInfo i;
 
             if (!File.Exists(@"0:\system")) // SETUP
@@ -85,16 +87,21 @@ namespace CubyOS.User
                 Console.WriteLine($"");
                 Console.WriteLine($" Creating system data...");
 
-                Directory.CreateDirectory(@"0:\system");
-                Directory.CreateDirectory(@"0:\system\users");
+                Directory.CreateDirectory(@"0:\system\");
+                if (Directory.Exists(@"0:\system\"))
+                {
+                    Directory.CreateDirectory(@"0:\system\users\");
+                }
+                
+                Console.WriteLine("dir users: " + Directory.Exists(@"0:\system\users\"));
 
                 try
                 {
                     File.WriteAllText(@"0:\system.null", "sudo");
-                    File.WriteAllText(@"0:\system\users.null", "sudo");
-                    //File.WriteAllText(@"0:\system\boot.txt", "CubyOS booted successfully. Type \"help\" for a list of commands.");
-                    //string h1 = $@"0:\system\users\{username}.sys"; string h2 = $"{password} sudo";
-                    //File.WriteAllText(h1, h2);
+                    //File.WriteAllText(@"0:\system\users.null", "sudo");
+                    File.WriteAllText(@"0:\system\boot.txt", "CubyOS booted successfully. Type \"help\" for a list of commands.");
+                    string h1 = $@":\system\users\{username}.sys"; string h2 = $"{password} sudo";
+                    File.WriteAllText(h1, h2);
                 }
                 catch { }
 
